@@ -8,8 +8,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AngularFireModule} from '@angular/fire/compat';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore/'; 
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+
 
 
 import { environment } from 'src/environments/environment.development';
@@ -25,6 +27,7 @@ import { AllPostComponent } from './post/all-post/all-post.component';
 import { NewPostComponent } from './post/new-post/new-post.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +37,8 @@ import { NewPostComponent } from './post/new-post/new-post.component';
     CategoriesComponent,
     AllPostComponent,
     NewPostComponent,
-    
+  
+
   ],
   imports: [
     BrowserModule,
@@ -46,8 +50,9 @@ import { NewPostComponent } from './post/new-post/new-post.component';
     BrowserAnimationsModule,
     AngularEditorModule,
     HttpClientModule,
-    ReactiveFormsModule
-    
+    ReactiveFormsModule,
+    AngularFireStorageModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

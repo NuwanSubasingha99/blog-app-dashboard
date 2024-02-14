@@ -8,9 +8,7 @@
 
         </div>
     </div>
-    <div>
-        {{postForm.invalid | json}}
-    </div>
+    
     <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
         <div class="row">
             <div class="col-md-7">
@@ -70,7 +68,7 @@
                     <select class="form-select" [ngClass]="{'is-invalid':fc.category.touched && fc.categoty.invalid}"
                         formControlName='category'>
                         <option value="" disabled>Please select a category</option>
-                        <option *ngFor="let category of categories" value="{{category.data.category}}">
+                        <option *ngFor="let category of categories" value="{{category.id}}-{{category.data.category}}">
                             {{category.data.category}}</option>
                     </select>
 
