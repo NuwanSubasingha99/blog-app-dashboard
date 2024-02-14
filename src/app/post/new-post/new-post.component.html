@@ -9,7 +9,7 @@
         </div>
     </div>
     <div>
-        {{postForm.value | json}}
+        {{postForm.invalid | json}}
     </div>
     <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
         <div class="row">
@@ -67,22 +67,23 @@
             <div class="col-md-5">
                 <div class="form-group">
                     <label for="">Please Select a post category</label>
-                    <select class="form-select" 
-                        [ngClass]="{'is-invalid':fc.category.touched && fc.categoty.invalid}" formControlName='category'>
+                    <select class="form-select" [ngClass]="{'is-invalid':fc.category.touched && fc.categoty.invalid}"
+                        formControlName='category'>
                         <option value="" disabled>Please select a category</option>
-                        <option *ngFor="let category of categories" value="{{category.data.category}}" >{{category.data.category}}</option>
+                        <option *ngFor="let category of categories" value="{{category.data.category}}">
+                            {{category.data.category}}</option>
                     </select>
-                    
+
                     <div *ngIf="fc.category.errors?.required">
                         <div class="alert alert-danger" *ngIf="fc.category.touched && fc.category.invalid">
                             category is required.
-                            {{fc.category.invalid }}
+
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="">Post image</label>
-                    <img [src]="imgSrc" class="form-control img-fluid img-preview" alt="">
+                    <img [src]="imgSrc" class="form-control img-fluid img-preview">
                     <input type="file" class="form-control" accept="image/* " (change)="showPreview($event)"
                         formControlName='postImg' [ngClass]="{'is-invalid':fc.postImg.touched && fc.postImg.invalid}">
                     <div *ngIf="fc.postImg.errors?.required">
@@ -114,7 +115,7 @@
                 </div>
             </div>
             <div class="col-md-12 text-center mb-5">
-                <button class="btn btn-info btn-theme" [disabled]="postForm.invalid">Save Post</button>
+                <button class="btn btn-info btn-theme">Save Post</button>
                 <button class="btn btn-warning ml-3" routerLink="/posts">Back to Post</button>
 
             </div>
