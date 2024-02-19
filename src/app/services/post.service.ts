@@ -66,4 +66,18 @@ export class PostService {
     })
 
   }
+
+  deleteImage(postImagPath:string , id:string){
+    this.storage.storage.refFromURL(postImagPath).delete().then(()=>{
+      this.deleteData(id)
+
+    })
+  }
+
+  deleteData(id:string){
+    this.afs.doc(`posts/${id}`).delete().then(()=>{
+      this.toster.warning('Data Deleted..!');
+    })
+
+  }
 }

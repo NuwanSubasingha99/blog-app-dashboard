@@ -20,4 +20,10 @@ export class AllPostComponent implements OnInit{
     
   }
 
+  onDelete(postImgPath:string,id:string){
+
+    this.postServise.deleteImage(postImgPath,id);
+
+  }
+
 }
