@@ -20,12 +20,12 @@ export class NewPostComponent implements OnInit {
   isDisabled: boolean = true;
 
   postForm!: FormGroup;
-  
-  post:any;
 
-  formStatus:string='Add New';
+  post: any;
 
-  docId:string='';
+  formStatus: string = 'Add New';
+
+  docId: string = '';
 
 
   constructor(
@@ -34,9 +34,10 @@ export class NewPostComponent implements OnInit {
     private postServise: PostService,
     private route: ActivatedRoute) {
 
-      this.route.queryParams.subscribe(val=>{
-        this.docId = val.id;
-        this.postServise.loadOneData(val.id).subscribe(post=>{
+    this.route.queryParams.subscribe(val => {
+      this.docId = val.id;
+      if (this.docId) {
+        this.postServise.loadOneData(val.id).subscribe(post => {
           console.log(post);
           this.post = post
           this.postForm = this.fb.group({
@@ -51,12 +52,25 @@ export class NewPostComponent implements OnInit {
           this.imgSrc = this.post.postImgPath;
           this.formStatus = "Edit"
 
-          
+
         })
-      })
+
+      }else{
+        this.postForm = this.fb.group({
+          title: ['', [Validators.required, Validators.minLength(10)]],
+          permalink: ['', [Validators.required]],
+          excerpt: ['', [Validators.required, Validators.minLength(50)]],
+          category: ['', [Validators.required]],
+          postImg: ['', [Validators.required]],
+          content: ['', [Validators.required]],
+        })
+
+      }
+
+    })
 
 
-    
+
 
   }
 
@@ -106,7 +120,7 @@ export class NewPostComponent implements OnInit {
       status: 'new',
       createdAt: new Date()
     }
-    this.postServise.uploadImage(this.selectedImage, postData ,this.formStatus,this.docId);
+    this.postServise.uploadImage(this.selectedImage, postData, this.formStatus, this.docId);
     this.postForm.reset();
     this.imgSrc = './assets/placeholder-image.png';
   }
