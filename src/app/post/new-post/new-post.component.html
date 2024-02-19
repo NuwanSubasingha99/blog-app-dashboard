@@ -1,9 +1,9 @@
 <div class="container">
     <div class="row">
         <div class="coi-md-12 text-center">
-            <h3 class="text-theme-primary">Add New Post</h3>
+            <h3 class="text-theme-primary">{{formStatus}} Post</h3>
             <p class="card shadow-effect">
-                You can add your new post here
+                You can {{formStatus}} post here
             </p>
 
         </div>
@@ -112,8 +112,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 text-center mb-5">
-                <button class="btn btn-info btn-theme">Save Post</button>
+            <div class="col-md-12 text-center mb-5 mt-3">
+                <button class="btn btn-info btn-theme">{{formStatus}} Post</button>
                 <button class="btn btn-warning ml-3" routerLink="/posts">Back to Post</button>
 
             </div>
