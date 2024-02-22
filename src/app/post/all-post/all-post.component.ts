@@ -26,4 +26,13 @@ export class AllPostComponent implements OnInit{
 
   }
 
+  onFeatured(id:string,value:boolean){
+    const featuredData = {
+      isFeatured : value
+
+    }
+    this.postServise.markFeatured(id,featuredData);
+
+  }
+
 }

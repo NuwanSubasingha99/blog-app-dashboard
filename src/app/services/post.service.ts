@@ -80,4 +80,14 @@ export class PostService {
     })
 
   }
+
+  markFeatured(id:string,featuredData:any){
+
+    this.afs.doc(`posts/${id}`).update(featuredData).then(()=>
+    {
+      this.toster.info('Status Updated');
+      
+    })
+
+  }
 }
