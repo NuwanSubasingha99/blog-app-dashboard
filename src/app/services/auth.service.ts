@@ -12,38 +12,41 @@ export class AuthService {
   // loggedIn:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   loggedIn = new BehaviorSubject(false);
+  isLoggedInGuard: boolean = false;
 
   constructor(private afAuth: AngularFireAuth,
     private toster: ToastrService,
     private router: Router) { }
 
-  login(email:string,password:string){
-    this.afAuth.signInWithEmailAndPassword(email,password).then(logRef=>{
-        this.toster.success("Login successfull..");
-        this.loadUser();
-        this.loggedIn.next(true);
-        this.router.navigate(['/'])
-    }).catch(e=>{
+  login(email: string, password: string) {
+    this.afAuth.signInWithEmailAndPassword(email, password).then(logRef => {
+      this.toster.success("Login successfull..");
+      this.loadUser();
+      this.loggedIn.next(true);
+      this.isLoggedInGuard = true ;
+      this.router.navigate(['/'])
+    }).catch(e => {
       this.toster.warning(e);
     })
   }
 
-  loadUser(){
-    this.afAuth.authState.subscribe(user =>{
-      localStorage.setItem('user',JSON.stringify(user));
+  loadUser() {
+    this.afAuth.authState.subscribe(user => {
+      localStorage.setItem('user', JSON.stringify(user));
     })
   }
 
-  logOut(){
-    this.afAuth.signOut().then(()=>{
+  logOut() {
+    this.afAuth.signOut().then(() => {
       this.toster.success('Logout Successfull..');
       localStorage.removeItem('user');
       this.loggedIn.next(false);
+      this.isLoggedInGuard = false ;
       this.router.navigate(['/login']);
     })
   }
 
-  isLoggedIn(){
+  isLoggedIn() {
     return this.loggedIn.asObservable();
   }
 }
