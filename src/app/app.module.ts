@@ -28,6 +28,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { AllPostComponent } from './post/all-post/all-post.component';
 import { NewPostComponent } from './post/new-post/new-post.component';
 import { LoginComponent } from './auth/login/login.component';
+import { SubscribersComponent } from './subscribers/subscribers.component';
 
 
 
@@ -41,6 +42,7 @@ import { LoginComponent } from './auth/login/login.component';
     AllPostComponent,
     NewPostComponent,
     LoginComponent,
+    SubscribersComponent,
   
 
   ],
