@@ -22,4 +22,10 @@ export class SubscribersComponent implements OnInit{
     
   }
 
+  OnDelete(id:string){
+
+    this.subservice.deleteData(id);
+
+  }
+
 }
